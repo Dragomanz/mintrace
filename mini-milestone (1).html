@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-ph="0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08101d">
+<meta name="color-scheme" content="dark">
+<title>Mini Milestone</title>
+<style>
+:root{--acc:#94a3b8;--rgb:148,163,184;--accd:#64748b;--gi:.15;--mu:#8b96ab;--cl:#223049;--card:#0e1729;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html[data-ph="1"]{--acc:#4ade80;--rgb:74,222,128;--accd:#16a34a}
+html[data-ph="2"]{--acc:#1943ca;--rgb:25,67,202;--accd:#102d8a}
+html[data-ph="3"]{--acc:#ff4d4d;--rgb:255,77,77;--accd:#b91c1c}
+html[data-ph="4"]{--acc:#c084fc;--rgb:192,132,252;--accd:#7e22ce}
+html[data-ph="5"]{--acc:#ffd23f;--rgb:255,210,63;--accd:#d97706}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;min-height:100vh;min-height:100dvh;padding:24px max(14px,env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left));color:#e6ebf5;font:400 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#08101d}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 520px at 0 0,#0f2c42,transparent 62%),radial-gradient(700px 500px at 100% 100%,#0d1d33,transparent 60%)}
+.wrap{max-width:860px;margin:0 auto;padding:clamp(16px,5vw,44px);background:linear-gradient(#1c2739,#18222f);border:1px solid #2b384d;border-radius:clamp(20px,3vw,30px);box-shadow:0 24px 70px #0009;display:grid;gap:clamp(12px,2vw,20px)}
+header{text-align:center}
+.brand{margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);font-weight:700}
+h1{margin:0;font-weight:800;font-size:clamp(26px,5.6vw,50px);line-height:1.12;letter-spacing:-.02em}
+.from{margin:8px 0 0;color:var(--mu);font-size:clamp(13px,2.4vw,17px)}
+.card{background:var(--card);border:1px solid rgba(var(--rgb),.45);border-radius:22px;padding:clamp(14px,3.2vw,26px);box-shadow:0 0 calc(4px + 14px*var(--gi)) rgba(var(--rgb),calc(.1 + .45*var(--gi)))}
+h1,.big,.card h2,.brand b{color:var(--acc);text-shadow:0 0 calc(3px + 10px*var(--gi)) rgba(var(--rgb),calc(.25 + .5*var(--gi))),0 0 calc(8px + 28px*var(--gi)) rgba(var(--rgb),calc(.1 + .4*var(--gi)))}
+.total{text-align:center}
+.big{display:block;font:700 clamp(36px,10vw,84px)/1.1 var(--mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.total span{letter-spacing:.14em;text-transform:uppercase;color:var(--mu);font-size:clamp(12px,2vw,17px);font-weight:600}
+.card h2{margin:0 0 10px;text-align:center;font-size:clamp(12px,2.4vw,18px);letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+.pt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 12px;margin-bottom:8px}
+.pct{font:700 clamp(26px,5.4vw,40px)/1 var(--mono);color:#fff;font-variant-numeric:tabular-nums}
+.togo{font:600 clamp(13px,2.4vw,17px) var(--mono);color:#cbd5e1}
+.bar{position:relative;height:clamp(22px,3.4vw,30px);border-radius:999px;border:2px solid #3a465c;background:#08101d;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:999px;background:linear-gradient(90deg,var(--accd),var(--acc));overflow:hidden}
+.fill::before{content:"";position:absolute;inset:0 -36px 0 0;background:linear-gradient(-45deg,#ffffff24 25%,transparent 25%,transparent 50%,#ffffff24 50%,#ffffff24 75%,transparent 75%) 0 0/36px 36px;animation:stripe 1.6s steps(12) infinite}
+@keyframes stripe{to{transform:translateX(36px)}}
+.tk{position:absolute;top:0;bottom:0;width:2px;background:#fff6}
+.scale{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;margin-top:8px;font:500 clamp(11px,2vw,15px) var(--mono);color:var(--mu)}
+.scale span:last-child{text-align:right}.scale b{color:#e6ebf5;font-weight:700;text-align:center}
+.units{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.u{text-align:center;border-radius:14px;background:#0a1322;border:1px solid var(--cl);padding:12px 2px;min-width:0}
+.u b{display:block;font:700 clamp(22px,4.6vw,42px)/1.1 var(--mono);font-variant-numeric:tabular-nums;color:#e6ebf5}
+.u b.s{font-size:clamp(15px,3vw,28px)}
+.u span{font-size:clamp(10px,2.4vw,13px);color:var(--mu)}
+.u.z{opacity:.4}
+.sum{text-align:center;margin:14px 0 4px;font-weight:600}
+.exact{text-align:center;color:var(--mu);font-size:14px;margin:0}
+.party{justify-self:center;text-align:center;font-weight:800;font-size:clamp(12px,3.4vw,26px);padding:10px 16px;border-radius:999px;color:#10131f;background:linear-gradient(90deg,#ff4d4d,#ffd23f,#4ade80,#60a5fa,#c084fc,#ff4d4d);animation:pop .7s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+details.set{padding:0}
+details.set summary{cursor:pointer;padding:clamp(14px,3vw,20px);font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;border-radius:22px}
+details.set summary::-webkit-details-marker{display:none}
+details.set summary::after{content:"+";font-size:22px;color:var(--mu)}
+details.set[open] summary::after{content:"−"}
+summary:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
+form{display:grid;gap:12px;padding:0 clamp(14px,3vw,22px) clamp(14px,3vw,22px)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+label{display:grid;gap:4px;font-size:13px;font-weight:600;color:#cbd5e1}
+input[type=number],input[type=text],input[type=date],input[type=time]{width:100%;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--cl);background:#08101d;color:#fff;font:500 16px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-appearance:none;appearance:none}
+input[type=date],input[type=time]{min-height:44px}
+.chk{display:flex;align-items:center;gap:10px;font-weight:500}
+.chk input{width:20px;height:20px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button{font:700 14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#e6ebf5;background:#16223a;border:1px solid var(--cl);border-radius:999px;padding:10px 16px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;appearance:none}
+button:hover{border-color:var(--acc)}
+button.pri{background:var(--accd);border-color:var(--acc)}
+#err{min-height:1.2em;margin:0;color:#fbbf24;font-size:13px}
+.note{margin:0;color:var(--mu);font-size:12.5px}
+#cf{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:6}
+#rbo{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:3;display:none}
+#rbo i{position:absolute;left:0;top:0;height:100%;width:200%;background:linear-gradient(90deg,#ff4d4d,#ffa94d,#ffe14d,#4ade80,#4dd2ff,#6366f1,#c084fc,#ff4d9a,#ff4d4d,#ffa94d,#ffe14d,#4ade80,#4dd2ff,#6366f1,#c084fc,#ff4d9a,#ff4d4d);opacity:.14;animation:slide 14s steps(112) infinite;will-change:transform}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes zoom{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+html.party #rbo{display:block}
+html.party .wrap{animation:zoom 7s steps(28) infinite;transform-origin:50% 25%;will-change:transform;border-color:#ff4d4d}
+html.party .card{box-shadow:none;border-color:var(--cl)}
+html.party .total{border-color:#ffa94d}html.party .prog{border-color:#ffe14d}html.party .cd{border-color:#4ade80}html.party .set{border-color:#4dd2ff}
+html.party :is(h1,.big,.prog h2,.cd h2,.brand b){color:#ff8a8a;text-shadow:0 0 10px #ff8a8a99,0 0 26px #ff8a8a88;animation:hue 10s steps(40) infinite;will-change:filter}
+html.party .total .big{animation-delay:-2s}html.party .prog h2{animation-delay:-4s}html.party .cd h2{animation-delay:-6s}html.party .brand b{animation-delay:-8s}
+html.party .fill{background:linear-gradient(90deg,#ff4d4d,#ffa94d,#ffe14d,#4ade80,#4dd2ff,#6366f1)}
+@media (max-width:560px){.units{grid-template-columns:repeat(3,1fr)}.u b{font-size:clamp(26px,9vw,38px)}.u b.s{font-size:clamp(18px,6vw,26px)}}
+@media (prefers-reduced-motion:reduce){.fill::before,.party,#rbo i,html.party .wrap,html.party :is(h1,.big,.prog h2,.cd h2,.brand b){animation:none!important}}
+</style>
+</head>
+<body>
+<div id="rbo" aria-hidden="true"><i></i></div>
+<main class="wrap">
+<div class="party" id="party" role="status" hidden></div>
+<header>
+<p class="brand">⏱ <b>Mini Milestone</b><span id="nm"></span></p>
+<h1 id="title">Countdown</h1>
+<p class="from" id="from"></p>
+</header>
+
+<section class="card total"><b class="big" id="total">0</b><span>Total Minutes</span></section>
+
+<section class="card prog">
+<h2 id="plabel">Progress</h2>
+<div class="pt"><span class="pct" id="pct">0%</span><span class="togo" id="togo"></span></div>
+<div class="bar"><div class="fill" id="fill"></div><i class="tk" style="left:50%;background:#4ade80"></i><i class="tk" style="left:70%;background:#6b8cff"></i><i class="tk" style="left:85%;background:#ff4d4d"></i><i class="tk" style="left:95%;background:#c084fc"></i><i class="tk" style="left:99%;background:#ffd23f"></i></div>
+<div class="scale"><span id="s0"></span><b id="phase"></b><span id="s1"></span></div>
+</section>
+
+<section class="card cd">
+<h2>⏳ Time remaining</h2>
+<div class="units">
+<div class="u"><b id="u0">00</b><span>Years</span></div><div class="u"><b id="u1">00</b><span>Months</span></div><div class="u"><b id="u2">00</b><span>Days</span></div>
+<div class="u"><b id="u3">00</b><span>Hours</span></div><div class="u"><b id="u4">00</b><span>Mins</span></div><div class="u"><b id="u5">00</b><span>Secs</span></div>
+</div>
+<p class="sum" id="sum"></p>
+<p class="exact" id="exact"></p>
+</section>
+
+<details class="card set" id="set">
+<summary>⚙️ Customize your timer</summary>
+<form id="f" novalidate autocomplete="off">
+<div class="row">
+<label>Milestone length (minutes)<input id="n" type="number" inputmode="numeric" min="1" max="1000000000" step="1"></label>
+<label>Name (optional)<input id="nmi" type="text" maxlength="40" placeholder="My countdown"></label>
+</div>
+<div class="row">
+<label>Start date<input id="d" type="date" min="1900-01-01" max="2200-12-31"></label>
+<label>Start time<input id="t" type="time"></label>
+</div>
+<label>Time zone<input id="tz" type="text" list="tzl" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Pacific/Auckland"></label>
+<datalist id="tzl"></datalist>
+<label class="chk"><input id="rp" type="checkbox"> Start the next milestone after the party</label>
+<p id="err" role="alert"></p>
+<div class="btns">
+<button class="pri" type="submit">Apply</button>
+<button type="button" id="now">Start from now</button>
+<button type="button" id="mytz">Use my time zone</button>
+<button type="button" id="pv">🎉 Preview party</button>
+<button type="button" id="rs">Reset</button>
+</div>
+<p class="note">Phases follow your milestone: Grey 0–50%, Green 50–70%, Blue 70–85%, Red 85–95%, Purple 95–99%, Golden 99–100%, then a 10-minute Rainbow party. Settings are saved on this device.</p>
+</form>
+</details>
+</main>
+<canvas id="cf" aria-hidden="true"></canvas>
+<script>
+(function(){
+'use strict';
+var KEY='mini-milestone-v1',PARTY=6e5,DEF={n:1e6,nm:'',d:'2013-07-18',t:'12:30',tz:'Pacific/Auckland',rp:true},B=[0,.5,.7,.85,.95,.99,1];
+var NAMES=['Grey phase · 0–50%','Green phase · 50–70%','Blue phase · 70–85%','Red phase · 85–95%','Purple phase · 95–99%','Golden phase · 99–100%','🌈 Rainbow party phase'];
+var $=function(i){return document.getElementById(i)},fmt=function(n){return n.toLocaleString('en-US')},H=document.documentElement;
+var RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches);
+var cfg,S=0,NM=0,wf=null,lf=null,lf0=null,cache={},curPh=-1,curGi=-1,partyOn=false,prevUntil=0,confEnd=0,partyId=0;
+function setT(id,v){if(cache[id]!==v){cache[id]=v;$(id).textContent=v}}
+function two(n){return n<10?'0'+n:''+n}
+function plural(n,w){return n+' '+w+(n===1?'':'s')}
+
+/* ---- time zones and calendar maths ---- */
+function mkWall(tz){return new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric'})}
+function wall(ms,f){var o={},p=f.formatToParts(new Date(ms)),i;for(i=0;i<p.length;i++)o[p[i].type]=+p[i].value;return Date.UTC(o.year,o.month-1,o.day,o.hour%24,o.minute,o.second)}
+function toUtc(y,mo,d,h,mi,f){var g=Date.UTC(y,mo-1,d,h,mi),o1=wall(g,f)-g,u=g-o1,o2=wall(u,f)-u;return o1===o2?u:g-o2}
+function arr(ms){var d=new Date(ms);return [d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate(),d.getUTCHours(),d.getUTCMinutes(),d.getUTCSeconds()]}
+function diff(a,b){
+ var B2=Date.UTC(b[0],b[1]-1,b[2],b[3],b[4],b[5]);
+ function addM(n){var yy=a[0]+Math.floor((a[1]-1+n)/12),mm=((a[1]-1+n)%12+12)%12;return Date.UTC(yy,mm,Math.min(a[2],new Date(Date.UTC(yy,mm+1,0)).getUTCDate()),a[3],a[4],a[5])}
+ var n=(b[0]-a[0])*12+(b[1]-a[1]);while(n>0&&addM(n)>B2)n--;if(n<0)n=0;
+ var rem=Math.max(0,B2-addM(n)),d=Math.floor(rem/864e5);rem-=d*864e5;var hh=Math.floor(rem/36e5);rem-=hh*36e5;var mi=Math.floor(rem/6e4);
+ return [Math.floor(n/12),n%12,d,hh,mi,Math.floor((rem-mi*6e4)/1e3)]}
+
+/* ---- settings: check, save, apply ---- */
+function parse(v){
+ var raw=String(v.n==null?'':v.n).trim(),n=Number(raw);
+ if(raw===''||!isFinite(n)||Math.floor(n)!==n||n<1||n>1e9)return {err:'The milestone length must be a whole number of minutes, from 1 to 1,000,000,000.'};
+ var tz=String(v.tz||'').trim(),f;
+ if(!tz)return {err:'Choose a time zone, like Pacific/Auckland.'};
+ try{f=mkWall(tz)}catch(e){return {err:'That time zone is not recognised. Pick one from the list, like Pacific/Auckland.'}}
+ var dm=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v.d||''),tm=/^(\d{1,2}):(\d{2})/.exec(v.t||'');
+ if(!dm||!tm)return {err:'Enter a start date and a start time.'};
+ var y=+dm[1],mo=+dm[2],d=+dm[3],h=+tm[1],mi=+tm[2];
+ if(y<1900||y>2200)return {err:'The start date must be between the years 1900 and 2200.'};
+ var chk=new Date(Date.UTC(y,mo-1,d));
+ if(mo<1||mo>12||chk.getUTCMonth()!==mo-1||chk.getUTCDate()!==d||h>23||mi>59)return {err:'That date or time does not exist.'};
+ var s=toUtc(y,mo,d,h,mi,f);
+ if(!isFinite(s)||!isFinite(s+n*6e4))return {err:'That start time could not be used.'};
+ return {cfg:{n:n,nm:String(v.nm||'').trim().slice(0,40),d:dm[0],t:two(h)+':'+two(mi),tz:tz,rp:!!v.rp},s:s,f:f}}
+function use(r){
+ cfg=r.cfg;S=r.s;NM=cfg.n*6e4;wf=r.f;cache={};curPh=-1;curGi=-1;
+ lf=new Intl.DateTimeFormat(undefined,{timeZone:cfg.tz,weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'});
+ lf0=new Intl.DateTimeFormat(undefined,{timeZone:cfg.tz,weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+ setT('from','From '+lf0.format(new Date(S)));setT('nm',cfg.nm?' · '+cfg.nm:'');tick()}
+function fill(c){$('n').value=c.n;$('nmi').value=c.nm;$('d').value=c.d;$('t').value=c.t;$('tz').value=c.tz;$('rp').checked=c.rp}
+function readForm(){return {n:$('n').value,nm:$('nmi').value,d:$('d').value,t:$('t').value,tz:$('tz').value,rp:$('rp').checked}}
+function save(c){try{localStorage.setItem(KEY,JSON.stringify(c))}catch(e){}}
+$('f').addEventListener('submit',function(e){e.preventDefault();var r=parse(readForm());
+ if(r.err){$('err').textContent=r.err;return}
+ $('err').textContent='';fill(r.cfg);save(r.cfg);use(r)});
+$('now').addEventListener('click',function(){var r=parse(Object.assign(readForm(),{n:$('n').value||DEF.n,d:'2000-01-01',t:'00:00'}));
+ if(r.err){$('err').textContent=r.err;return}
+ var w=arr(wall(Date.now(),r.f));$('d').value=w[0]+'-'+two(w[1])+'-'+two(w[2]);$('t').value=two(w[3])+':'+two(w[4]);$('f').requestSubmit?$('f').requestSubmit():$('f').dispatchEvent(new Event('submit',{cancelable:true}))});
+$('mytz').addEventListener('click',function(){var z='';try{z=Intl.DateTimeFormat().resolvedOptions().timeZone}catch(e){}
+ if(z){$('tz').value=z;$('err').textContent=''}else $('err').textContent='Your browser did not share its time zone. Type one in, like Pacific/Auckland.'});
+$('pv').addEventListener('click',function(){prevUntil=Date.now()+8000;tick()});
+$('rs').addEventListener('click',function(){try{localStorage.removeItem(KEY)}catch(e){}$('err').textContent='';fill(DEF);use(parse(DEF))});
+$('set').addEventListener('toggle',function(){var l=$('tzl');if($('set').open&&!l.firstChild){var z=null;try{z=Intl.supportedValuesOf&&Intl.supportedValuesOf('timeZone')}catch(e){}
+ z=z||['UTC','Pacific/Auckland','Australia/Sydney','Australia/Perth','Asia/Tokyo','Asia/Seoul','Asia/Shanghai','Asia/Singapore','Asia/Kolkata','Asia/Dubai','Europe/London','Europe/Paris','Europe/Berlin','Europe/Moscow','Africa/Cairo','Africa/Johannesburg','America/Sao_Paulo','America/Argentina/Buenos_Aires','America/New_York','America/Chicago','America/Denver','America/Los_Angeles','America/Anchorage','Pacific/Honolulu'];
+ var fr=document.createDocumentFragment(),i,o;if(z.indexOf('UTC')<0)z=['UTC'].concat(z);for(i=0;i<z.length;i++){o=document.createElement('option');o.value=z[i];fr.appendChild(o)}l.appendChild(fr)}});
+
+/* ---- phases ---- */
+function phaseOf(p){var i=5;while(i>0&&p<B[i])i--;return i}
+
+/* ---- confetti: one small canvas, 30 fps, gentle ---- */
+var CF=(function(){
+ var cv=$('cf'),x=cv.getContext('2d'),P=[],run=false,last=0,SMALL=!!(window.matchMedia&&matchMedia('(max-width:700px),(pointer:coarse)').matches),Q=SMALL?.55:1,CAP=SMALL?80:140,S2=SMALL?.6:.8;
+ function size(){cv.width=Math.round(innerWidth*S2);cv.height=Math.round(innerHeight*S2)}
+ size();addEventListener('resize',size);
+ function loop(t){var dt=(t-last)/1000;if(dt<.03){requestAnimationFrame(loop);return}dt=Math.min(.06,dt);last=t;x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,cv.width,cv.height);
+  for(var i=P.length-1;i>=0;i--){var p=P[i];p.t+=dt;p.vx*=1-1.4*dt;p.vy=(p.vy+p.g*dt)*(1-.7*dt);p.x+=p.vx*dt;p.y+=p.vy*dt;p.r+=p.vr*dt;
+   if(p.t>p.l||p.y>innerHeight+30){P.splice(i,1);continue}
+   x.globalAlpha=.85*Math.min(1,(p.l-p.t)*2);x.fillStyle=p.c;var ca=Math.cos(p.r),sa=Math.sin(p.r);x.setTransform(ca*S2,sa*S2,-sa*S2,ca*S2,p.x*S2,p.y*S2);
+   if(p.k)x.fillRect(-p.w*1.6,-1.5,p.w*3.2,3);else x.fillRect(-p.w/2,-p.h/2,p.w,p.h)}
+  x.setTransform(1,0,0,1,0,0);x.globalAlpha=1;if(P.length)requestAnimationFrame(loop);else run=false}
+ return{add:function(n,o){if(!x)return;n=Math.max(1,Math.round(n*Q));for(var i=0;i<n&&P.length<CAP;i++){var a=(o.angle+(Math.random()-.5)*o.spread)*Math.PI/180,v=o.v*(.55+Math.random()*.65);
+   P.push({x:o.x*innerWidth,y:o.y*innerHeight,vx:Math.cos(a)*v,vy:-Math.sin(a)*v,r:Math.random()*6,vr:(Math.random()-.5)*14,w:(4+Math.random()*4)*(o.s||1),h:(2.5+Math.random()*3)*(o.s||1),c:o.c[Math.random()*o.c.length|0],g:o.g||900,l:o.l||3.4,t:0,k:Math.random()<.2})}
+  if(!run&&P.length){run=true;last=performance.now();requestAnimationFrame(loop)}},
+  clear:function(){P.length=0;if(x){x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,cv.width,cv.height)}}}})();
+function startConf(){
+ if(RM)return;var my=++partyId,n=0,cols=['#ffd23f','#ff6b81','#60a5fa','#4ade80','#c084fc','#ffffff'];
+ CF.add(40,{x:.5,y:.62,angle:90,spread:150,v:900,c:cols,s:.9});
+ var iv=setInterval(function(){if(my!==partyId||Date.now()>=confEnd){clearInterval(iv);return}if(document.hidden)return;
+  CF.add(2,{x:0,y:.85,angle:64,spread:30,v:950,c:cols,l:4.2});CF.add(2,{x:1,y:.85,angle:116,spread:30,v:950,c:cols,l:4.2});
+  if(n%8===0){CF.add(3,{x:0,y:.5,angle:35,spread:26,v:800,c:cols,l:4.2});CF.add(3,{x:1,y:.5,angle:145,spread:26,v:800,c:cols,l:4.2})}
+  if(n++%16===0)CF.add(16,{x:Math.random()*.7+.15,y:Math.random()*.35+.12,angle:90,spread:360,v:320,g:420,l:2.4,c:[cols[Math.random()*5|0],'#ffffff'],s:.9})},220)}
+function setParty(on){if(on===partyOn)return;partyOn=on;H.classList.toggle('party',on);$('party').hidden=!on;document.title=on?'🎉 Milestone reached! 🎉':'Mini Milestone';
+ if(on)startConf();else{partyId++;CF.clear()}}
+
+/* ---- the clock ---- */
+function tick(){
+ var now=Date.now(),el=now-S,fin=false,k,target,p,hit=0,real=false;
+ if(el<0){k=0;target=S;p=0}
+ else{
+  if(cfg.rp)k=Math.floor(el/NM)+1;else{k=1;fin=el>=NM}
+  target=S+k*NM;p=fin?1:(el-(k-1)*NM)/NM;
+  if(el>=NM){hit=cfg.rp?S+Math.floor(el/NM)*NM:S+NM;real=now-hit<PARTY}}
+ var pre=prevUntil>now,party=real||pre;confEnd=real?hit+PARTY:prevUntil;
+ setParty(party);
+ var ph=party?6:(fin||el<0?0:phaseOf(p)),gi=.15;
+ if(ph<6){var lo=B[ph],hi=B[ph+1];gi=.15+.85*Math.max(0,Math.min(1,(p-lo)/(hi-lo)));if(ph===5)gi=Math.max(.6,gi);gi=Math.round(gi*25)/25}
+ if(ph!==curPh){curPh=ph;H.setAttribute('data-ph',ph)}
+ if(gi!==curGi){curGi=gi;H.style.setProperty('--gi',gi)}
+ setT('phase',NAMES[ph]);
+ if(party)setT('party','🎉 '+fmt((real?(cfg.rp?Math.floor(el/NM):1)*cfg.n:Math.max(1,k)*cfg.n))+' MINUTES REACHED!!! 🎉');
+ setT('total',fmt(Math.max(0,Math.floor(el/6e4))));
+ var left=Math.max(0,target-now),dec=cfg.n>=1e5?4:cfg.n>=1e3?2:1,pc=fin?100:Math.min(p*100,100-Math.pow(10,-dec));
+ setT('title',el<0?'Not started yet':fin?'Milestone reached!':'Countdown To '+fmt(k*cfg.n)+' Minutes!');
+ setT('plabel',el<0?'Waiting for the start':fin?'Complete':'Progress to '+fmt(k*cfg.n)+' minutes');
+ setT('pct',pc.toFixed(dec)+'%');
+ var pw=pc.toFixed(3);if(cache.pw!==pw){cache.pw=pw;$('fill').style.width=pc+'%'}
+ setT('s0',fmt(Math.max(0,(k-1)*cfg.n)));setT('s1',fmt(k*cfg.n));
+ setT('togo',fin?'🎉 Done':fmt(Math.ceil(left/6e4))+(el<0?' minutes until the start':' minutes to go'));
+ var d=fin?[0,0,0,0,0,0]:diff(arr(wall(now,wf)),arr(wall(now,wf)+left)),i,s,v;
+ for(i=0;i<6;i++){v=d[i]<10?'0'+d[i]:''+d[i];setT('u'+i,v);var b=$('u'+i);b.className=v.length>3?'s':'';b.parentNode.className=(d[i]===0&&d.slice(0,i).every(function(z){return z===0}))?'u z':'u'}
+ if(fin)s='The milestone has been reached.';
+ else if(left<6e4)s=(el<0?'Starts in under a minute':'Under a minute to go');
+ else if(left<36e5)s=plural(d[4],'minute')+' and '+plural(d[5],'second')+(el<0?' until the start':' to go');
+ else{var parts=[],nm=['year','month','day','hour','minute'];for(i=0;i<5&&parts.length<2;i++)if(d[i])parts.push(plural(d[i],nm[i]));s='About '+parts.join(' and ')+(el<0?' until the start':' to go')}
+ setT('sum',s);
+ setT('exact',(fin?'Reached ':el<0?'Starts ':'Milestone lands ')+lf.format(new Date(target)))}
+
+/* ---- start up ---- */
+var saved=null;try{saved=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+var first=saved&&parse(saved);if(!first||first.err)first=parse(DEF);
+fill(first.cfg);use(first);
+setInterval(tick,250);document.addEventListener('visibilitychange',tick);
+})();
+</script>
+</body>
+</html>
